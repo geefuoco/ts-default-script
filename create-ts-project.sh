@@ -4,7 +4,7 @@ echo "Creating folder $NAME ..."
 mkdir $NAME;
 cd $NAME;
 npm init -y;
-npm i -D typescript typesync @typescript-eslint/parser @typescript-eslint/eslint-plugin prettier jest;
+npm i -D typescript typesync @typescript-eslint/parser @typescript-eslint/eslint-plugin prettier jest eslint;
 echo "{ 
     \"compilerOptions\": { 
         \"rootDir\": \"src\", 
