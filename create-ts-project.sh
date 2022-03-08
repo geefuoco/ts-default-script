@@ -5,6 +5,8 @@ mkdir $NAME;
 cd $NAME;
 npm init -y;
 npm i -D typescript typesync @typescript-eslint/parser @typescript-eslint/eslint-plugin prettier jest eslint;
+echo "Please select the type of project your are building";
+
 echo "{ 
     \"compilerOptions\": { 
         \"rootDir\": \"src\", 

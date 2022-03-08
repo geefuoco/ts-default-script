@@ -1,0 +1,23 @@
+{
+  "name": "ts-script",
+  "version": "1.0.0",
+  "description": "A script for creating a default Typescript Project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geefuoco/ts-default-script.git"
+  },
+  "keywords": [],
+  "author": "Gianluca Fuoco",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/geefuoco/ts-default-script/issues"
+  },
+  "homepage": "https://github.com/geefuoco/ts-default-script#readme",
+  "dependencies": {
+    "inquirer": "^8.2.0"
+  }
+}
