@@ -13,7 +13,9 @@ echo "{
         \"allowJs\": true, 
         \"moduleResolution\": \"node\", 
         \"module\": \"commonjs\", 
-        \"esModuleInterop\": true, 
+        \"sourceMap\": true,
+        \"esModuleInterop\": true,
+        \"allowSyntheticDefaultImports\": true, 
         \"forceConsistentCasingInFileNames\": true, 
         \"strict\": true, 
         \"skipLibCheck\": true 
@@ -46,7 +48,8 @@ npx typesync;
 npm i;
 npm set-script test "jest --watch";
 npm set-script format "prettier --config .prettierrc 'src/**/*.ts' --write";
-npm set-script lint "eslint src --ext .ts --fix"; 
+npm set-script lint "eslint src --ext .ts --fix";
+npm set-script get-types "typesync && npm i"; 
 mkdir src;
 touch ./src/index.ts;
 echo "
