@@ -22,9 +22,10 @@
     "inquirer": "^8.2.0"
   },
   "bin": {
-    "create-ts-project": "./index.js"
+    "create-ts-project": "./build/index.js"
   },
   "devDependencies": {
+    "@types/inquirer": "^8.2.0",
     "@typescript-eslint/eslint-plugin": "^5.14.0",
     "@typescript-eslint/parser": "^5.14.0",
     "eslint": "^8.10.0",
