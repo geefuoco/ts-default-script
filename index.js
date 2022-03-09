@@ -112,7 +112,7 @@ function createConfigFiles(projectType) {
 }
 
 function getTypescriptTypes() {
-  executeCommand("typesync && npm i");
+  executeCommand("npx typesync && npm i");
 }
 
 function executeCommand(command) {
@@ -232,66 +232,72 @@ function createTypescriptConfig(projectType) {
   }
 
   try {
-    fs.writeFileSync("./.tsconfig.json", JSON.stringify(config));
+    fs.writeFileSync("./tsconfig.json", JSON.stringify(config));
   } catch (error) {
     console.error(error);
   }
 }
 
 function createOtherFiles(projectType, title) {
-  createCSSFile();
-  switch (projectType) {
-    case "React":
-      setupDefaultReact(title);
-      break;
-    case "Webpack":
-      createHtmlFile();
-      createWebpackConfig();
-      break;
-    default:
-      break;
+  try {
+    fs.mkdirSync("./src");
+    fs.writeFileSync("./src/index.ts", "//Hello, World!");
+    createCSSFile();
+    switch (projectType) {
+      case "React":
+        setupDefaultReact(title);
+        break;
+      case "Webpack":
+        createHtmlFile();
+        createWebpackConfig();
+        break;
+      default:
+        break;
+    }
+  } catch (error) {
+    console.error(error);
   }
 }
 
 function setupDefaultReact(title) {
   const defaultData = `
-  import React from "react";
-  import ReactDOM from "react-dom";
-  import "./index.css";
-  import App from "./App";
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
 
-  ReactDOM.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
-    document.getElementById("root")
-  );
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById("root")
+);
 `;
   const defaultHtml = `
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../src/index.css"/>
-    <title>${title}</title>
-  </head>
-  <body>
-  <noscript>You need to enable Javascript to run this website</noscript>
-  <div id="root"></div>
-  </body>
-  </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../src/index.css"/>
+  <title>${title}</title>
+</head>
+<body>
+<noscript>You need to enable Javascript to run this website</noscript>
+<div id="root"></div>
+</body>
+</html>
   `;
-  fs.mkdir("./src/components");
-  fs.mkdir("./public");
+  fs.mkdirSync("./src/components");
+  fs.mkdirSync("./public");
   fs.writeFileSync("./src/index.tsx", defaultData);
   fs.writeFileSync("./public/index.html", defaultHtml);
 }
 
 function createWebpackConfig() {
   const data = `
-  /*eslint-disable */
+/*eslint-disable */
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackTagsPlugin = require("html-webpack-tags-plugin");
@@ -343,15 +349,15 @@ module.exports = {
 function createCSSFile() {
   try {
     const data = `
-    *,
-    *::before,
-    *::after{
-      padding: 0;
-      margin: 0;
-      outline: none;
-      border: none;
-      box-sizing: border-box;
-    }
+*,
+*::before,
+*::after{
+  padding: 0;
+  margin: 0;
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+}
     `;
 
     fs.writeFileSync("./src/index.css", data);
@@ -363,18 +369,18 @@ function createCSSFile() {
 function createHtmlFile() {
   try {
     const data = `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Document</title>
-    </head>
-    <body>
-      
-    </body>
-    </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
   `;
     fs.writeFileSync("./src/index.html", data);
   } catch (error) {
