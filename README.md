@@ -2,12 +2,16 @@
 
 A script for creating a default Typescript Project.
 
-Run the script and follow the prompts. This script will create a new folder, set config files,and initialize a git repository.
+**How to use**
 
-It includes:
-- config file for eslint
-- config file for prettier
-- config file for Typescript
-- src folder with index.ts
+1. Compile the source to javascript with ```npm run build```
+2. Inside the build folder, add a shabang for javascript at the top of the file ```#!/usr/bin/env node```
+3. Run the command ```npm link``` to set the script as a binary file. 
+4. Create a project with ```create-ts-project``` followed by the name of the project
 
-Contains npm scripts for testing with jest, formatting with prettier, linting with eslint.
+Can be used to create a:
+- React Project
+- Node Project
+- Webpack Project
+
+
