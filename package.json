@@ -19,5 +19,8 @@
   "homepage": "https://github.com/geefuoco/ts-default-script#readme",
   "dependencies": {
     "inquirer": "^8.2.0"
+  },
+  "bin": {
+    "create-ts-project": "./index.js"
   }
 }
