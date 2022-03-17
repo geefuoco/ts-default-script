@@ -29,11 +29,14 @@ function createProjectStructure(projectName: string): void {
 }
 
 function initializeNpm(projectType: string): void {
-  const dependencies = fetchDependencies(projectType);
+  const devDependencies = fetchDevDependencies(projectType);
   console.log("Initializing npm...");
   executeCommand("npm init -y");
   console.log("Installing dependencies...");
-  executeCommand(`npm i -D ${dependencies}`);
+  executeCommand(`npm i -D ${devDependencies}`);
+  if (projectType === "React") {
+    executeCommand("npm i react react-dom");
+  }
 }
 
 function setNpmScripts(projectType: string) {
@@ -103,8 +106,8 @@ function executeCommand(command: string) {
   }
 }
 
-function fetchDependencies(projectType: string): string {
-  const dependencies = [
+function fetchDevDependencies(projectType: string): string {
+  const devDependencies = [
     "typescript",
     "typesync",
     "@typescript-eslint/parser",
@@ -116,31 +119,29 @@ function fetchDependencies(projectType: string): string {
 
   switch (projectType) {
     case "Nodejs":
-      dependencies.push("ts-node");
+      devDependencies.push("ts-node");
       break;
     case "React":
-      dependencies.push("react");
-      dependencies.push("react-dom");
-      dependencies.push("react-scripts");
-      dependencies.push("@testing-library/react");
-      dependencies.push("@testing-library/jest-dom");
-      dependencies.push("@testing-library/user-event");
-      dependencies.push("eslint-config-react-app");
+      devDependencies.push("react-scripts");
+      devDependencies.push("@testing-library/react");
+      devDependencies.push("@testing-library/jest-dom");
+      devDependencies.push("@testing-library/user-event");
+      devDependencies.push("eslint-config-react-app");
       break;
     case "Webpack":
-      dependencies.push("webpack");
-      dependencies.push("webpack-cli");
-      dependencies.push("webpack-dev-server");
-      dependencies.push("concurrently");
-      dependencies.push("html-webpack-plugin");
-      dependencies.push("html-webpack-tags-plugin");
-      dependencies.push("ts-loader");
+      devDependencies.push("webpack");
+      devDependencies.push("webpack-cli");
+      devDependencies.push("webpack-dev-server");
+      devDependencies.push("concurrently");
+      devDependencies.push("html-webpack-plugin");
+      devDependencies.push("html-webpack-tags-plugin");
+      devDependencies.push("ts-loader");
       break;
     default:
       break;
   }
 
-  return dependencies.join(" ");
+  return devDependencies.join(" ");
 }
 
 function createOtherFiles(projectName: string, projectType: string) {
