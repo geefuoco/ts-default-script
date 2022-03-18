@@ -145,21 +145,10 @@ function fetchDevDependencies(projectType: string): string {
 }
 
 function createOtherFiles(projectName: string, projectType: string) {
-  const css = `
-*,
-*::before,
-*::after{
-  padding: 0;
-  margin: 0;
-  outline: none;
-  border: none;
-  box-sizing: border-box;
-}
-  `;
 
   try {
     mkdirSync("./public");
-    writeFileSync("./src/index.css", css);
+    writeFileSync("./src/index.css", "");
     if (projectType === "React") {
       const files = generateReactFiles(projectName);
       mkdirSync("./src/components");
